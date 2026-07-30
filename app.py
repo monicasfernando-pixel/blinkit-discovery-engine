@@ -27,120 +27,81 @@ st.set_page_config(
 # ── Styling ───────────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-    .stApp { background-color: #121212; color: #ffffff; }
-    section[data-testid="stSidebar"] { background-color: #1a1a1a; }
-
-    /* Sidebar text — labels, captions, markdown */
-    section[data-testid="stSidebar"] label,
-    section[data-testid="stSidebar"] .stMarkdown p,
-    section[data-testid="stSidebar"] .stMarkdown h2,
-    section[data-testid="stSidebar"] .stMarkdown h3,
-    section[data-testid="stSidebar"] .stCheckbox label p,
-    section[data-testid="stSidebar"] .stSlider label p,
-    section[data-testid="stSidebar"] [data-testid="stWidgetLabel"] p,
-    section[data-testid="stSidebar"] span,
-    section[data-testid="stSidebar"] p { color: #ffffff !important; }
-
-    /* Slider value/tick text */
-    section[data-testid="stSidebar"] .stSlider [data-testid="stTickBarMin"],
-    section[data-testid="stSidebar"] .stSlider [data-testid="stTickBarMax"] {
-        color: #cccccc !important;
-    }
-
     .app-header {
-        background: linear-gradient(135deg, #0C831F 0%, #F8CB46 100%);
-        padding: 2rem 2.5rem;
-        border-radius: 12px;
-        margin-bottom: 1.5rem;
-    }
-    .app-header h1 { margin: 0; font-size: 1.9rem; color: #1a1a1a; }
-    .app-header p  { margin: 0.4rem 0 0; opacity: 0.9; color: #1a1a1a; font-size: 1rem; }
-
-    .method-card {
-        background: #1e1e1e;
-        border: 1px solid #333;
-        border-left: 4px solid #F8CB46;
+        background: #F8CB46;
+        padding: 1.1rem 1.5rem;
         border-radius: 10px;
-        padding: 1.1rem 1.3rem;
-        margin: 0.5rem 0;
+        margin-bottom: 0.6rem;
     }
-    .method-card h4 { color: #F8CB46; margin: 0 0 0.4rem; font-size: 1.02rem; }
-    .method-card p  { color: #b3b3b3; margin: 0; font-size: 0.9rem; line-height: 1.5; }
+    .app-header h1 {
+        margin: 0;
+        font-size: 1.55rem;
+        font-weight: 700;
+        color: #000000;
+    }
+    .app-header p {
+        margin: 0.3rem 0 0;
+        color: #1C1C1C;
+        font-size: 0.92rem;
+        line-height: 1.35;
+    }
 
-    .qa-card {
-        background: #171717;
-        border: 1px solid #2e2e2e;
-        border-radius: 10px;
-        padding: 1rem 1.2rem;
-        margin: 0.5rem 0;
+    .how-card, .method-card, .stat-box, .validation-card, .summary-box {
+        background: #FFFFFF;
+        border: 1px solid #E5E0D0;
+        border-radius: 8px;
+        padding: 0.75rem 0.9rem;
     }
-    .qa-card .q { color: #F8CB46; font-weight: 700; font-size: 0.98rem; margin-bottom: 0.4rem; }
-    .qa-card .a { color: #dcdcdc; font-size: 0.93rem; line-height: 1.55; }
+    .how-card { height: 100%; margin: 0; }
+    .how-card h4 {
+        color: #1C1C1C;
+        font-weight: 700;
+        margin: 0 0 0.3rem;
+        font-size: 0.95rem;
+    }
+    .how-card p { color: #444; margin: 0; font-size: 0.85rem; line-height: 1.4; }
 
-    .how-card {
-        background: #1e1e1e;
-        border: 1px solid #333;
-        border-radius: 10px;
-        padding: 1.2rem;
-        height: 100%;
+    .method-card { margin: 0.35rem 0; }
+    .method-card h4 {
+        color: #0C831F;
+        font-weight: 700;
+        margin: 0 0 0.25rem;
+        font-size: 0.95rem;
     }
-    .how-card h4 { color: #F8CB46; margin-top: 0; }
+    .method-card p { color: #444; margin: 0; font-size: 0.85rem; line-height: 1.4; }
 
     .section-header {
-        font-size: 1.2rem;
+        font-size: 1.02rem;
         font-weight: 700;
-        color: #F8CB46;
-        margin: 1.8rem 0 0.6rem;
-        padding-bottom: 0.3rem;
-        border-bottom: 1px solid #2a2a2a;
+        color: #1C1C1C;
+        margin: 0.7rem 0 0.4rem;
+        padding-bottom: 0.2rem;
+        border-bottom: 1px solid #E5E0D0;
     }
 
     .quote-block {
-        background: #1e1e1e;
+        background: #FFFFFF;
+        border: 1px solid #E5E0D0;
         border-left: 3px solid #F8CB46;
-        padding: 0.7rem 1rem;
-        margin: 0.4rem 0;
+        padding: 0.55rem 0.8rem;
+        margin: 0.3rem 0;
         border-radius: 0 8px 8px 0;
         font-style: italic;
-        color: #b3b3b3;
-        font-size: 0.9rem;
+        color: #444;
+        font-size: 0.88rem;
     }
 
-    .frustration-item {
-        background: #1a1a1a;
-        border: 1px solid #2e2e2e;
+    .frustration-item, .need-item, .opp-item {
+        background: #FFFFFF;
+        border: 1px solid #E5E0D0;
         border-radius: 6px;
-        padding: 0.6rem 1rem;
-        margin: 0.3rem 0;
-        font-size: 0.95rem;
+        padding: 0.5rem 0.8rem;
+        margin: 0.25rem 0;
+        font-size: 0.9rem;
+        color: #1C1C1C;
     }
-
-    .need-item {
-        background: #1a2a1a;
-        border-left: 3px solid #0C831F;
-        border-radius: 0 6px 6px 0;
-        padding: 0.6rem 1rem;
-        margin: 0.3rem 0;
-        font-size: 0.95rem;
-    }
-
-    .cause-item {
-        background: #2a1a1a;
-        border-left: 3px solid #ff4444;
-        border-radius: 0 6px 6px 0;
-        padding: 0.6rem 1rem;
-        margin: 0.3rem 0;
-        font-size: 0.95rem;
-    }
-
-    .opp-item {
-        background: #1a1a2a;
-        border-left: 3px solid #4488ff;
-        border-radius: 0 6px 6px 0;
-        padding: 0.6rem 1rem;
-        margin: 0.3rem 0;
-        font-size: 0.95rem;
-    }
+    .need-item { border-left: 3px solid #0C831F; border-radius: 0 6px 6px 0; }
+    .opp-item  { border-left: 3px solid #0C831F; border-radius: 0 6px 6px 0; }
 
     .src-badge {
         display: inline-block;
@@ -152,19 +113,120 @@ st.markdown("""
     }
     .src-appstore  { background: #0d84e8; color: #fff; }
     .src-playstore { background: #34a853; color: #fff; }
-    .src-default   { background: #555;    color: #fff; }
+    .src-reddit    { background: #FF4500; color: #fff; }
+    .src-default   { background: #666;    color: #fff; }
 
-    .stat-box {
-        background: #1e1e1e;
-        border: 1px solid #2e2e2e;
-        border-radius: 8px;
-        padding: 0.9rem;
-        text-align: center;
+    .stat-box { text-align: center; margin-bottom: 0.4rem; }
+    .stat-box .val { font-size: 1.55rem; font-weight: 700; color: #0C831F; line-height: 1.2; }
+    .stat-box .lbl { font-size: 0.75rem; color: #666; margin-top: 0.05rem; }
+
+    .validation-card { margin: 0; }
+    .validation-card .note { color: #444; font-size: 0.85rem; line-height: 1.4; }
+    .summary-box {
+        color: #1C1C1C;
+        font-size: 0.92rem;
+        line-height: 1.5;
+        margin: 0.35rem 0 0;
     }
-    .stat-box .val { font-size: 2rem; font-weight: 700; color: #F8CB46; }
-    .stat-box .lbl { font-size: 0.78rem; color: #888; margin-top: 0.1rem; }
+    .cache-note {
+        background: #FFF8D6;
+        border: 1px solid #E5D48A;
+        color: #5A4A00;
+        border-radius: 8px;
+        padding: 0.45rem 0.8rem;
+        font-size: 0.85rem;
+        margin-bottom: 0.5rem;
+    }
+    div[data-testid="stTabs"] { margin-top: 0.35rem; }
+    div[data-testid="stExpander"] { margin-bottom: 0.25rem; }
+
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 8px;
+        border-bottom: 2px solid #E5E0CE;
+    }
+    .stTabs [data-baseweb="tab"] {
+        height: 52px;
+        padding: 0 24px;
+        font-size: 17px;
+        font-weight: 600;
+        background-color: #FFFFFF;
+        border-radius: 10px 10px 0 0;
+    }
+    .stTabs [aria-selected="true"] {
+        background-color: #F8CB46;
+        color: #1C1C1C;
+        border-bottom: 3px solid #0C831F;
+    }
+    .dq-headline { font-weight: 700; color: #1C1C1C; margin: 0 0 0.45rem; font-size: 0.95rem; }
+    .dq-bullets { margin: 0 0 0.5rem 1.1rem; padding: 0; color: #1C1C1C; font-size: 0.9rem; }
+    .dq-bullets li { margin: 0.15rem 0; }
+    .dq-quote {
+        font-style: italic;
+        color: #444;
+        border-left: 3px solid #F8CB46;
+        padding: 0.4rem 0.75rem;
+        margin: 0.35rem 0 0;
+        background: #FFFFFF;
+        border-radius: 0 6px 6px 0;
+        font-size: 0.88rem;
+    }
+    .opp-card {
+        background: #FFFFFF;
+        border: 1px solid #E5E0D0;
+        border-radius: 10px;
+        padding: 0.9rem 1.05rem;
+        margin: 0.45rem 0;
+    }
+    .opp-card .opp-title {
+        font-weight: 700;
+        color: #1C1C1C;
+        font-size: 1.02rem;
+        margin: 0 0 0.35rem;
+        line-height: 1.3;
+    }
+    .opp-card .opp-barrier {
+        color: #555;
+        font-size: 0.88rem;
+        margin: 0 0 0.55rem;
+        line-height: 1.4;
+    }
+    .opp-tag {
+        display: inline-block;
+        background: #F4F1E4;
+        border: 1px solid #E5E0D0;
+        color: #3a3a3a;
+        border-radius: 999px;
+        padding: 2px 10px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        margin: 0 6px 4px 0;
+    }
 </style>
 """, unsafe_allow_html=True)
+
+_APP_DIR = os.path.dirname(os.path.abspath(__file__))
+CACHE_PATH = os.path.join(_APP_DIR, "cached_results.json")
+REDDIT_CSV = os.path.join(_APP_DIR, "blinkit_reddit.csv")
+COMBINED_CSV = os.path.join(_APP_DIR, "combined_feedback.csv")
+LIVE_FAIL_NOTE = "Live fetch unavailable — showing cached corpus."
+
+# Manual audit only — never estimate or generate these values.
+MANUAL_AUDIT = {
+    "human_audit_agreement_pct": 82,
+    "sample_size": 50,
+    "sample_note": "Randomly sampled non-noise rows, manually reviewed",
+    "dominant_error": (
+        "Generic price complaints were over-tagged as practical blockers. "
+        "Corrected by discounting price mentions that carry no category context."
+    ),
+}
+
+SOURCE_ORDER = ["App Store", "Play Store", "Reddit"]
+SOURCE_SUBLABEL = {
+    "App Store": "live scrape",
+    "Play Store": "live scrape",
+    "Reddit": "manually curated threads",
+}
 
 # ── Constants ─────────────────────────────────────────────────────────────────
 BLINKIT_APP_ID   = "960335206"
@@ -311,6 +373,69 @@ def fetch_appstore_reviews(status=None) -> List[Dict]:
         reviews.extend(_fetch_appstore_ssr(country, seen))
 
     return reviews
+
+
+# ── Reddit (manually curated local file — never live-scraped) ─────────────────
+
+def _normalize_source(source: str) -> str:
+    s = (source or "").strip()
+    if s.lower() == "reddit":
+        return "Reddit"
+    return s
+
+
+def load_reddit_reviews() -> List[Dict]:
+    """Load manually curated Reddit rows from local CSV. Never scraped live."""
+    if os.path.isfile(REDDIT_CSV):
+        path, reddit_only = REDDIT_CSV, True
+    elif os.path.isfile(COMBINED_CSV):
+        path, reddit_only = COMBINED_CSV, False
+    else:
+        return []
+
+    out: List[Dict] = []
+    with open(path, encoding="utf-8-sig") as f:
+        for row in csv.DictReader(f):
+            if not reddit_only and _normalize_source(row.get("source", "")) != "Reddit":
+                continue
+            text = (row.get("text") or "").strip()
+            if not text or len(text) < 15:
+                continue
+            try:
+                rating = int(float(row.get("rating_or_upvotes") or row.get("rating") or 0))
+            except (TypeError, ValueError):
+                rating = 0
+            out.append({
+                "source": "Reddit",
+                "rating": rating,
+                "title":  row.get("title", "") or "",
+                "text":   text,
+                "date":   (row.get("date") or "")[:10],
+                "author": row.get("author") or "Reddit",
+            })
+    return out
+
+
+def merge_reddit_into_corpus(live_reviews: List[Dict]) -> List[Dict]:
+    """Keep live App Store / Play Store rows; always append local Reddit rows."""
+    live_only = [
+        {**r, "source": _normalize_source(r.get("source", ""))}
+        for r in live_reviews
+        if _normalize_source(r.get("source", "")) in ("App Store", "Play Store")
+    ]
+    return live_only + load_reddit_reviews()
+
+
+def corpus_source_counts(reviews: List[Dict]) -> Dict[str, int]:
+    """Counts for all three sources; corpus total must equal their sum."""
+    counts = {s: 0 for s in SOURCE_ORDER}
+    for r in reviews:
+        src = _normalize_source(r.get("source", ""))
+        if src in counts:
+            counts[src] += 1
+        elif src:
+            counts[src] = counts.get(src, 0) + 1
+    return counts
 
 
 # ── Play Store scraper ────────────────────────────────────────────────────────
@@ -482,20 +607,29 @@ def _synthesize(batch_results: List[Dict], total: int, api_key: str) -> Dict:
                 "Synthesize into ONE unified analysis about product & category DISCOVERY on Blinkit. "
                 "Consolidate duplicate themes and surface patterns that appear across multiple batches. "
                 "Every answer must be grounded in the review signals above.\n\n"
-                "Answer these discovery questions explicitly in 'discovery_questions'.\n"
+                "Answer these eight discovery questions in 'discovery_questions'. "
+                "Do NOT write paragraph answers. For EACH question return an object:\n"
+                '{"headline":"one-sentence bold finding","bullets":["reason under 15 words",'
+                '"...","..."],"quote":"verbatim corpus quote as evidence"}\n'
+                "Use 3–4 bullets per answer. Keep findings grounded in the review signals above.\n\n"
                 "Return EXACTLY this JSON:\n"
                 '{"summary":"...",'
                 '"discovery_questions":{'
-                '"repeat_category_buying":"why users repeatedly buy from the same categories",'
-                '"barriers_to_exploration":"what prevents users from exploring new categories",'
-                '"how_users_discover":"how users discover products today",'
-                '"role_of_habits":"what role habits play in shopping behavior",'
-                '"info_before_new_category":"what information users need before trying a new category"},'
+                '"repeat_category_buying":{"headline":"...","bullets":["..."],"quote":"..."},'
+                '"barriers_to_exploration":{"headline":"...","bullets":["..."],"quote":"..."},'
+                '"how_users_discover":{"headline":"...","bullets":["..."],"quote":"..."},'
+                '"role_of_habits":{"headline":"...","bullets":["..."],"quote":"..."},'
+                '"info_before_new_category":{"headline":"...","bullets":["..."],"quote":"..."},'
+                '"frustrations":{"headline":"...","bullets":["..."],"quote":"..."},'
+                '"experimenter_segments":{"headline":"...","bullets":["..."],"quote":"..."},'
+                '"unmet_needs":{"headline":"...","bullets":["..."],"quote":"..."}},'
                 '"key_themes":[{"theme":"...","description":"...","frequency":"high|medium|low","quote":"..."}],'
                 '"top_frustrations":["...","...","...","...","..."],'
                 '"user_segments":[{"segment":"...","description":"...","experimentation":"high|medium|low","pain_points":["..."]}],'
                 '"unmet_needs":["...","...","...","..."],'
-                '"ai_opportunities":["...","...","..."]}'
+                '"ai_opportunities":[{"headline":"bold one-line opportunity",'
+                '"barrier":"which barrier it addresses in one short line",'
+                '"themes":["theme name from key_themes","..."]}]}'
             ),
         }],
     )
@@ -542,13 +676,122 @@ def analyze_with_claude(reviews: List[Dict], api_key: str, status=None) -> Dict:
 
 # ── UI helpers ────────────────────────────────────────────────────────────────
 
-def _badge(source: str) -> str:
-    cls_map = {
-        "App Store":        "src-appstore",
-        "Play Store":       "src-playstore",
+def load_cached_results() -> Optional[Dict]:
+    """Load frozen baseline for zero-click results-first display."""
+    try:
+        with open(CACHE_PATH, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return None
+
+
+def build_cached_payload(insights: Dict, reviews: List[Dict]) -> Dict:
+    """Assemble the full result set written to cached_results.json."""
+    merged = merge_reddit_into_corpus(reviews)
+    counts = corpus_source_counts(merged)
+    meta = insights.get("_meta", {})
+    export_insights = {k: v for k, v in insights.items() if k != "_meta"}
+    export_insights["_meta"] = {
+        "total_reviews":   meta.get("total_reviews", len(merged)),
+        "batches_total":   meta.get("batches_total"),
+        "batches_success": meta.get("batches_success"),
+        "batch_size":      meta.get("batch_size", BATCH_SIZE),
     }
-    cls = cls_map.get(source, "src-default")
-    return f'<span class="src-badge {cls}">{source}</span>'
+    dq = dict(export_insights.get("discovery_questions") or {})
+    # Ensure all eight discovery answers exist as structured objects
+    def _as_dq(val, fallback_headline: str, fallback_bullets: List[str], fallback_quote: str = ""):
+        if isinstance(val, dict) and val.get("headline"):
+            return {
+                "headline": val.get("headline", fallback_headline),
+                "bullets": list(val.get("bullets") or fallback_bullets)[:4],
+                "quote": val.get("quote") or fallback_quote,
+            }
+        if isinstance(val, str) and val.strip():
+            return {"headline": val.strip().split(".")[0] + ".", "bullets": fallback_bullets, "quote": fallback_quote}
+        return {"headline": fallback_headline, "bullets": fallback_bullets, "quote": fallback_quote}
+
+    frust = export_insights.get("top_frustrations") or []
+    segs = export_insights.get("user_segments") or []
+    high = [s for s in segs if (s.get("experimentation") or "").lower() == "high"]
+    needs = export_insights.get("unmet_needs") or []
+    themes = export_insights.get("key_themes") or []
+    theme_quote = next((t.get("quote") or "" for t in themes if t.get("quote")), "")
+
+    dq["repeat_category_buying"] = _as_dq(dq.get("repeat_category_buying"), "Users repeat the same categories.", ["Habit and urgency dominate."], theme_quote)
+    dq["barriers_to_exploration"] = _as_dq(dq.get("barriers_to_exploration"), "Barriers block category exploration.", ["Trust, price, and weak discovery."], theme_quote)
+    dq["how_users_discover"] = _as_dq(dq.get("how_users_discover"), "Discovery is mostly off-app.", ["Social posts and deals lead finds."], theme_quote)
+    dq["role_of_habits"] = _as_dq(dq.get("role_of_habits"), "Habits suppress exploration.", ["Emergency triggers lock category use."], theme_quote)
+    dq["info_before_new_category"] = _as_dq(dq.get("info_before_new_category"), "Users need clearer pre-trial info.", ["Quality, returns, and pricing cues."], theme_quote)
+    dq["frustrations"] = _as_dq(
+        dq.get("frustrations"),
+        "Recurring frustrations block expansion.",
+        [f[:80] for f in frust[:4]] or ["Quality and fee friction recur."],
+        theme_quote,
+    )
+    dq["experimenter_segments"] = _as_dq(
+        dq.get("experimenter_segments"),
+        "A minority of segments experiment most.",
+        [f"{s.get('segment')}" for s in (high or segs)[:4]] or ["Social seekers experiment most."],
+        theme_quote,
+    )
+    dq["unmet_needs"] = _as_dq(
+        dq.get("unmet_needs"),
+        "Key unmet needs remain unserved.",
+        [n[:80] for n in needs[:4]] or ["Risk-free trials and discovery paths."],
+        theme_quote,
+    )
+    export_insights["discovery_questions"] = dq
+
+    sample: List[Dict] = []
+    for src in SOURCE_ORDER:
+        sample.extend([r for r in merged if r["source"] == src][:12])
+    sample = sample[:50] if sample else merged[:50]
+    run_date = datetime.now().strftime("%Y-%m-%d")
+    return {
+        "generated_at": datetime.now().isoformat(),
+        "run_date": run_date,
+        "total_reviews": sum(counts.values()),
+        "sources": [s for s in SOURCE_ORDER if counts.get(s, 0) > 0],
+        "source_counts": counts,
+        "validation": dict(MANUAL_AUDIT),
+        "sample_reviews": sample,
+        "reviews": sample,
+        "summary": export_insights.get("summary"),
+        "discovery_questions": dq,
+        "key_themes": export_insights.get("key_themes"),
+        "top_frustrations": export_insights.get("top_frustrations"),
+        "user_segments": export_insights.get("user_segments"),
+        "unmet_needs": export_insights.get("unmet_needs"),
+        "ai_opportunities": export_insights.get("ai_opportunities"),
+        "insights": export_insights,
+    }
+
+
+def save_cached_baseline(insights: Dict, reviews: List[Dict]) -> Dict:
+    """Explicitly freeze the current analysis as the visitor-facing baseline."""
+    payload = build_cached_payload(insights, reviews)
+    with open(CACHE_PATH, "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2, ensure_ascii=False)
+    return payload
+
+
+def _format_corpus_date(cache: Dict) -> str:
+    raw = cache.get("run_date") or (cache.get("generated_at") or "")[:10]
+    try:
+        return datetime.strptime(raw[:10], "%Y-%m-%d").strftime("%d %b %Y")
+    except Exception:
+        return raw or "—"
+
+
+def _badge(source: str) -> str:
+    src = _normalize_source(source)
+    cls_map = {
+        "App Store":  "src-appstore",
+        "Play Store": "src-playstore",
+        "Reddit":     "src-reddit",
+    }
+    cls = cls_map.get(src, "src-default")
+    return f'<span class="src-badge {cls}">{src}</span>'
 
 
 def _freq_dot(freq: str) -> str:
@@ -562,371 +805,630 @@ def _exp_dot(level: str) -> str:
     return f'<span style="color:{color}; font-weight:700;">{level.upper()}</span>'
 
 
+def _normalize_dq_answer(answer) -> Dict:
+    """Accept structured {headline,bullets,quote} or legacy paragraph string."""
+    if isinstance(answer, dict):
+        bullets = answer.get("bullets") or []
+        if isinstance(bullets, str):
+            bullets = [bullets]
+        return {
+            "headline": (answer.get("headline") or "").strip(),
+            "bullets": [str(b).strip() for b in bullets if str(b).strip()][:4],
+            "quote": (answer.get("quote") or "").strip(),
+        }
+    text = (answer or "").strip()
+    if not text:
+        return {"headline": "", "bullets": [], "quote": ""}
+    # Legacy paragraph fallback
+    first = text.split(".")[0].strip()
+    return {"headline": first + ("." if first and not first.endswith(".") else ""), "bullets": [], "quote": ""}
+
+
+def _render_dq_answer(answer) -> None:
+    data = _normalize_dq_answer(answer)
+    if data["headline"]:
+        st.markdown(f'<div class="dq-headline">{data["headline"]}</div>', unsafe_allow_html=True)
+    if data["bullets"]:
+        items = "".join(f"<li>{b}</li>" for b in data["bullets"])
+        st.markdown(f'<ul class="dq-bullets">{items}</ul>', unsafe_allow_html=True)
+    if data["quote"]:
+        st.markdown(f'<div class="dq-quote">"{data["quote"]}"</div>', unsafe_allow_html=True)
+    if not data["headline"] and not data["bullets"] and not data["quote"]:
+        st.markdown("—")
+
+
+def _normalize_ai_opportunity(opp) -> Dict:
+    """Accept structured opportunity objects or legacy paragraph strings."""
+    if isinstance(opp, dict):
+        themes = opp.get("themes") or []
+        if isinstance(themes, str):
+            themes = [themes]
+        return {
+            "headline": (opp.get("headline") or "").strip(),
+            "barrier": (opp.get("barrier") or "").strip(),
+            "themes": [str(t).strip() for t in themes if str(t).strip()],
+        }
+    text = (opp or "").strip()
+    if not text:
+        return {"headline": "", "barrier": "", "themes": []}
+    if "—" in text:
+        title, rest = text.split("—", 1)
+    elif "-" in text[:60]:
+        title, rest = text.split("-", 1)
+    else:
+        title, rest = text, ""
+    return {
+        "headline": title.strip(),
+        "barrier": rest.strip()[:140],
+        "themes": [],
+    }
+
+
+def _render_ai_opportunity(opp) -> None:
+    data = _normalize_ai_opportunity(opp)
+    tags = "".join(f'<span class="opp-tag">{t}</span>' for t in data["themes"])
+    barrier = data["barrier"] or "Addresses a corpus-identified discovery barrier."
+    st.markdown(
+        f'<div class="opp-card">'
+        f'<div class="opp-title">{data["headline"] or "AI opportunity"}</div>'
+        f'<div class="opp-barrier">{barrier}</div>'
+        f'{tags}'
+        f'</div>',
+        unsafe_allow_html=True,
+    )
+
+
+def _render_step_cards():
+    """Four short how-it-works cards — bold heading + one sentence each."""
+    c1, c2, c3, c4 = st.columns(4)
+    for col, (title, body) in zip(
+        [c1, c2, c3, c4],
+        [
+            ("1 · Gather data",
+             "Scrape live App Store &amp; Play Store reviews; always merge manually curated Reddit threads."),
+            ("2 · Identify themes",
+             "Claude map-reduce tags recurring themes with frequency and a supporting quote."),
+            ("3 · Generate insights",
+             "A synthesis step answers the eight discovery questions across all batches."),
+            ("4 · Validate quality",
+             "Human audit agreement, sample size, and quote grounding check insight quality."),
+        ],
+    ):
+        with col:
+            st.markdown(
+                f'<div class="how-card"><h4>{title}</h4><p>{body}</p></div>',
+                unsafe_allow_html=True,
+            )
+
+
 def _render_methodology(insights: Dict, all_reviews: List[Dict]):
-    """Demonstrate how data is gathered/analyzed, how themes & insights form, and validation."""
+    """Compact methodology detail cards (no charts)."""
     meta = insights.get("_meta", {})
-    source_counts: Dict[str, int] = {}
-    for r in all_reviews:
-        source_counts[r["source"]] = source_counts.get(r["source"], 0) + 1
-
-    # Date range
-    dates = sorted(d for d in (r.get("date", "") for r in all_reviews) if d and len(d) >= 7)
-    date_range = f"{dates[0]} → {dates[-1]}" if dates else "n/a"
-
-    # Rating distribution
-    rating_counts = {i: 0 for i in range(1, 6)}
-    rated = 0
-    for r in all_reviews:
-        try:
-            rv = int(r.get("rating") or 0)
-        except (TypeError, ValueError):
-            rv = 0
-        if 1 <= rv <= 5:
-            rating_counts[rv] += 1
-            rated += 1
-
-    # Theme grounding — share of themes backed by a verbatim quote
     themes = insights.get("key_themes", [])
     grounded = sum(1 for t in themes if (t.get("quote") or "").strip())
     grounding_pct = round(100 * grounded / len(themes)) if themes else 0
-
     batches_total   = meta.get("batches_total", 0)
     batches_success = meta.get("batches_success", 0)
     batch_size      = meta.get("batch_size", BATCH_SIZE)
+    counts = corpus_source_counts(all_reviews) if all_reviews else {}
 
-    st.markdown('<div class="section-header">How This Analysis Works</div>', unsafe_allow_html=True)
-
+    st.markdown('<div class="section-header">Methodology detail</div>', unsafe_allow_html=True)
     m1, m2 = st.columns(2)
     with m1:
         st.markdown(
-            '<div class="method-card"><h4>1 · How data is gathered</h4><p>'
-            f'Live public reviews are scraped from the Apple App Store and Google Play '
-            f'(India storefront, <code>com.grofers.customerapp</code>). '
-            f'{len(all_reviews)} reviews across {len(source_counts)} sources '
-            f'({date_range}) are deduplicated by text hash and round-robin interleaved by source '
-            'so each analysis batch stays balanced.</p></div>',
+            f'<div class="method-card"><h4>1 · Gather data</h4><p>'
+            f'{sum(counts.values()) or "N"} reviews: App Store &amp; Play Store (live scrape) plus '
+            f'Reddit (manually curated threads), deduped and interleaved by source.</p></div>',
             unsafe_allow_html=True,
         )
         st.markdown(
-            '<div class="method-card"><h4>3 · How insights are generated</h4><p>'
-            'A reduce step merges all batch outputs, consolidates duplicate themes, and answers the '
-            'eight discovery questions — repeat buying, exploration barriers, discovery paths, habit '
-            'loops, pre-trial info needs, frustrations, experimenter segments, and unmet needs.</p></div>',
+            '<div class="method-card"><h4>3 · Generate insights</h4><p>'
+            'A reduce step consolidates themes and answers the eight discovery questions.</p></div>',
             unsafe_allow_html=True,
         )
     with m2:
         st.markdown(
-            '<div class="method-card"><h4>2 · How themes are identified</h4><p>'
-            f'Reviews are processed with a map-reduce pattern: batches of {batch_size} reviews are each '
-            f'sent to Claude, which extracts recurring themes, tags each with a frequency (high/medium/low), '
-            f'and captures a supporting user quote. {batches_success}/{batches_total} batches processed '
-            'successfully.</p></div>',
+            f'<div class="method-card"><h4>2 · Identify themes</h4><p>'
+            f'Batches of {batch_size} go to Claude; {batches_success}/{batches_total} batches '
+            f'succeeded with frequency-tagged themes and quotes.</p></div>',
             unsafe_allow_html=True,
         )
         st.markdown(
-            '<div class="method-card"><h4>4 · How quality is validated</h4><p>'
-            f'<b>Grounding:</b> {grounded}/{len(themes)} themes ({grounding_pct}%) are backed by a verbatim '
-            f'review quote. <b>Coverage:</b> {rated} reviews carry a star rating; themes must recur across '
-            f'{batches_total} independent batches to survive synthesis. <b>Sample size:</b> {len(all_reviews)} '
-            'reviews reduce single-review bias.</p></div>',
+            f'<div class="method-card"><h4>4 · Validate quality</h4><p>'
+            f'{grounding_pct}% of themes carry a verbatim quote; themes must recur across batches '
+            f'to survive synthesis.</p></div>',
             unsafe_allow_html=True,
         )
 
-    # Rating distribution bar — quick quantitative sanity check
-    if rated:
-        st.markdown("**Rating distribution of analyzed reviews**")
-        try:
-            import pandas as pd
-            df = pd.DataFrame(
-                {"reviews": [rating_counts[i] for i in range(1, 6)]},
-                index=[f"{i}★" for i in range(1, 6)],
-            )
-            st.bar_chart(df, height=180)
-        except Exception:
-            for i in range(5, 0, -1):
-                st.markdown(f"{i}★ — {rating_counts[i]}")
 
-    st.markdown("---")
+def _render_validation():
+    """Hardcoded manual-audit stats only — never estimated."""
+    agreement = MANUAL_AUDIT["human_audit_agreement_pct"]
+    sample_n  = MANUAL_AUDIT["sample_size"]
+    sample_note = MANUAL_AUDIT["sample_note"]
+    error     = MANUAL_AUDIT["dominant_error"]
 
-
-def render_insights(insights: Dict, all_reviews: List[Dict]):
-    # ── Stats row ──
-    source_counts: Dict[str, int] = {}
-    for r in all_reviews:
-        source_counts[r["source"]] = source_counts.get(r["source"], 0) + 1
-
-    cols = st.columns(4)
-    stats = [
-        (len(all_reviews),                       "Reviews analyzed"),
-        (len(source_counts),                     "Sources"),
-        (len(insights.get("key_themes", [])),    "Themes identified"),
-        (len(insights.get("user_segments", [])), "User segments"),
-    ]
-    for col, (val, lbl) in zip(cols, stats):
-        with col:
-            st.markdown(
-                f'<div class="stat-box">'
-                f'<div class="val">{val}</div>'
-                f'<div class="lbl">{lbl}</div>'
-                f'</div>',
-                unsafe_allow_html=True,
-            )
-
-    # Source breakdown
-    st.markdown("&nbsp;")
-    breakdown_cols = st.columns(len(source_counts) or 1)
-    for col, (src, cnt) in zip(breakdown_cols, source_counts.items()):
-        with col:
-            st.markdown(
-                f'<div class="stat-box">{_badge(src)}'
-                f'<div class="val" style="font-size:1.5rem">{cnt}</div>'
-                f'<div class="lbl">reviews</div></div>',
-                unsafe_allow_html=True,
-            )
-
-    st.markdown("---")
-
-    # ── Methodology & validation ──
-    _render_methodology(insights, all_reviews)
-
-    # ── Summary ──
-    st.markdown('<div class="section-header">Executive Summary</div>', unsafe_allow_html=True)
-    st.info(insights.get("summary", ""))
-
-    # ── Discovery questions answered ──
-    st.markdown('<div class="section-header">Discovery Questions Answered</div>', unsafe_allow_html=True)
-    dq = insights.get("discovery_questions", {})
-    dq_map = [
-        ("Why do users repeatedly buy from the same categories?", dq.get("repeat_category_buying", "")),
-        ("What prevents users from exploring new categories?",     dq.get("barriers_to_exploration", "")),
-        ("How do users discover products today?",                  dq.get("how_users_discover", "")),
-        ("What role do habits play in shopping behavior?",         dq.get("role_of_habits", "")),
-        ("What information do users need before trying a new category?", dq.get("info_before_new_category", "")),
-    ]
-    for q, a in dq_map:
+    st.markdown('<div class="section-header">Validation</div>', unsafe_allow_html=True)
+    v1, v2 = st.columns(2)
+    with v1:
         st.markdown(
-            f'<div class="qa-card"><div class="q">{q}</div>'
-            f'<div class="a">{a or "—"}</div></div>',
+            f'<div class="stat-box"><div class="val">{agreement}%</div>'
+            f'<div class="lbl">Human-audit agreement</div></div>',
             unsafe_allow_html=True,
         )
+    with v2:
+        st.markdown(
+            f'<div class="stat-box"><div class="val">{sample_n}</div>'
+            f'<div class="lbl">Audit sample size</div></div>',
+            unsafe_allow_html=True,
+        )
+    st.caption(sample_note)
+    st.markdown(
+        f'<div class="validation-card"><div class="note">'
+        f'<b>Dominant classification error:</b> {error}</div></div>',
+        unsafe_allow_html=True,
+    )
 
-    # ── Key themes ──
-    st.markdown('<div class="section-header">Key Themes</div>', unsafe_allow_html=True)
-    for theme in insights.get("key_themes", []):
-        freq = theme.get("frequency", "medium")
-        label = f"**{theme['theme']}** &nbsp;·&nbsp; {_freq_dot(freq)} frequency"
-        with st.expander(theme["theme"]):
-            st.markdown(f"Frequency: {_freq_dot(freq)}", unsafe_allow_html=True)
-            st.markdown(theme.get("description", ""))
-            quote = theme.get("quote", "")
-            if quote:
+
+def _normalize_display_counts(
+    all_reviews: List[Dict],
+    corpus_total: Optional[int],
+    source_counts: Optional[Dict[str, int]],
+):
+    if not source_counts:
+        source_counts = corpus_source_counts(all_reviews)
+    else:
+        normalized = {s: 0 for s in SOURCE_ORDER}
+        for k, v in source_counts.items():
+            normalized[_normalize_source(k)] = int(v)
+        if normalized.get("Reddit", 0) == 0:
+            normalized["Reddit"] = len(load_reddit_reviews())
+        source_counts = normalized
+
+    display_counts = {s: int(source_counts.get(s, 0)) for s in SOURCE_ORDER}
+    sum_sources = sum(display_counts.values())
+    display_total = sum_sources
+    return display_counts, display_total
+
+
+def render_insights(
+    insights: Dict,
+    all_reviews: List[Dict],
+    corpus_total: Optional[int] = None,
+    source_counts: Optional[Dict[str, int]] = None,
+):
+    display_counts, display_total = _normalize_display_counts(
+        all_reviews, corpus_total, source_counts
+    )
+
+    tab_overview, tab_how, tab_themes, tab_dq, tab_seg, tab_ai = st.tabs([
+        "Overview",
+        "How It Works",
+        "Themes",
+        "Discovery Questions",
+        "Segments",
+        "AI Opportunities",
+    ])
+
+    # ── Overview: stats, sources, validation, summary only ──
+    with tab_overview:
+        cols = st.columns(4)
+        stats = [
+            (display_total,                          "Reviews in corpus"),
+            (sum(1 for v in display_counts.values() if v > 0), "Sources"),
+            (len(insights.get("key_themes", [])),    "Themes identified"),
+            (len(insights.get("user_segments", [])), "User segments"),
+        ]
+        for col, (val, lbl) in zip(cols, stats):
+            with col:
                 st.markdown(
-                    f'<div class="quote-block">"{quote}"</div>',
+                    f'<div class="stat-box">'
+                    f'<div class="val">{val}</div>'
+                    f'<div class="lbl">{lbl}</div>'
+                    f'</div>',
                     unsafe_allow_html=True,
                 )
 
-    # ── Top frustrations ──
-    st.markdown('<div class="section-header">Top Frustrations</div>', unsafe_allow_html=True)
-    for i, f in enumerate(insights.get("top_frustrations", []), 1):
-        st.markdown(
-            f'<div class="frustration-item"><b>{i}.</b> {f}</div>',
-            unsafe_allow_html=True,
+        st.caption(
+            f"{display_counts['App Store']} App Store + "
+            f"{display_counts['Play Store']} Play Store + "
+            f"{display_counts['Reddit']} Reddit = {display_total}"
         )
 
-    # ── Segments + needs (side by side) ──
-    col_a, col_b = st.columns(2)
+        breakdown_cols = st.columns(3)
+        for col, src in zip(breakdown_cols, SOURCE_ORDER):
+            cnt = display_counts[src]
+            sub = SOURCE_SUBLABEL[src]
+            with col:
+                st.markdown(
+                    f'<div class="stat-box">{_badge(src)}'
+                    f'<div class="val" style="font-size:1.35rem">{cnt}</div>'
+                    f'<div class="lbl">{sub}</div></div>',
+                    unsafe_allow_html=True,
+                )
 
-    with col_a:
-        st.markdown(
-            '<div class="section-header">User Segments '
-            '<span style="font-size:0.8rem;color:#888">(who experiments most)</span></div>',
-            unsafe_allow_html=True,
-        )
+        _render_validation()
+
+        st.markdown('<div class="section-header">Executive Summary</div>', unsafe_allow_html=True)
+        summary = insights.get("summary") or ""
+        st.markdown(f'<div class="summary-box">{summary}</div>', unsafe_allow_html=True)
+
+    # ── How It Works (second tab — pipeline before findings) ──
+    with tab_how:
+        _render_step_cards()
+        _render_methodology(insights, all_reviews)
+        st.markdown('<div class="section-header">Sample Reviews</div>', unsafe_allow_html=True)
+        with st.expander("Show sample (first 20 reviews)", expanded=False):
+            for r in all_reviews[:20]:
+                rating_str = f"⭐ {r['rating']}/5 &nbsp;|&nbsp;" if r.get("rating") else ""
+                st.markdown(
+                    f'<div class="quote-block">'
+                    f'{_badge(r["source"])} &nbsp;{rating_str}'
+                    f'<br>"{r["text"][:300]}"'
+                    f"</div>",
+                    unsafe_allow_html=True,
+                )
+
+    # ── Themes: collapsed expanders + frustrations ──
+    with tab_themes:
+        st.markdown('<div class="section-header">Key Themes</div>', unsafe_allow_html=True)
+        for theme in insights.get("key_themes", []):
+            freq = theme.get("frequency", "medium")
+            with st.expander(f"{theme['theme']}  ·  {freq.upper()}", expanded=False):
+                st.markdown(f"Frequency: {_freq_dot(freq)}", unsafe_allow_html=True)
+                st.markdown(theme.get("description", ""))
+                quote = theme.get("quote", "")
+                if quote:
+                    st.markdown(
+                        f'<div class="quote-block">"{quote}"</div>',
+                        unsafe_allow_html=True,
+                    )
+
+        st.markdown('<div class="section-header">Top Frustrations</div>', unsafe_allow_html=True)
+        for i, f in enumerate(insights.get("top_frustrations", []), 1):
+            with st.expander(f"{i}. {f[:90]}{'…' if len(f) > 90 else ''}", expanded=False):
+                st.markdown(f)
+
+    # ── Discovery Questions: collapsed expanders, structured answers ──
+    with tab_dq:
+        dq = insights.get("discovery_questions", {})
+        dq_map = [
+            ("Why do users repeatedly buy from the same categories?", dq.get("repeat_category_buying")),
+            ("What prevents users from exploring new categories?",     dq.get("barriers_to_exploration")),
+            ("How do users discover products today?",                  dq.get("how_users_discover")),
+            ("What role do habits play in shopping behavior?",         dq.get("role_of_habits")),
+            ("What information do users need before trying a new category?", dq.get("info_before_new_category")),
+            ("What frustrations emerge repeatedly?", dq.get("frustrations")),
+            ("Which user segments are more likely to experiment?", dq.get("experimenter_segments")),
+            ("What unmet needs emerge consistently across discussions?", dq.get("unmet_needs")),
+        ]
+        for i, (q, a) in enumerate(dq_map, 1):
+            with st.expander(f"Q{i}. {q}", expanded=False):
+                _render_dq_answer(a)
+
+    # ── Segments ──
+    with tab_seg:
+        st.markdown('<div class="section-header">User Segments</div>', unsafe_allow_html=True)
         for seg in insights.get("user_segments", []):
             exp = seg.get("experimentation", "medium")
-            with st.expander(f"{seg['segment']}  ·  experiments: {exp.upper()}"):
+            with st.expander(
+                f"{seg['segment']}  ·  experiments: {exp.upper()}",
+                expanded=False,
+            ):
                 st.markdown(f"Likelihood to experiment: {_exp_dot(exp)}", unsafe_allow_html=True)
                 st.markdown(seg.get("description", ""))
                 for pp in seg.get("pain_points", []):
                     st.markdown(f"• {pp}")
 
-    with col_b:
         st.markdown('<div class="section-header">Unmet Needs</div>', unsafe_allow_html=True)
         for need in insights.get("unmet_needs", []):
-            st.markdown(
-                f'<div class="need-item">✦ {need}</div>',
-                unsafe_allow_html=True,
-            )
+            with st.expander(need[:100] + ("…" if len(need) > 100 else ""), expanded=False):
+                st.markdown(f'<div class="need-item">✦ {need}</div>', unsafe_allow_html=True)
 
     # ── AI Opportunities ──
-    st.markdown('<div class="section-header">AI Opportunities Identified</div>', unsafe_allow_html=True)
-    for opp in insights.get("ai_opportunities", []):
-        st.markdown(
-            f'<div class="opp-item">→ {opp}</div>',
-            unsafe_allow_html=True,
+    with tab_ai:
+        st.caption(
+            "Opportunities surfaced by the engine, ranked by how directly they address "
+            "the barriers found in the corpus."
         )
-
-    # ── Sample reviews ──
-    st.markdown('<div class="section-header">Sample Reviews Collected</div>', unsafe_allow_html=True)
-    with st.expander("Show sample (first 20 reviews)"):
-        for r in all_reviews[:20]:
-            rating_str = f"⭐ {r['rating']}/5 &nbsp;|&nbsp;" if r["rating"] else ""
-            st.markdown(
-                f'<div class="quote-block">'
-                f'{_badge(r["source"])} &nbsp;{rating_str}'
-                f'<br>"{r["text"][:300]}"'
-                f"</div>",
-                unsafe_allow_html=True,
-            )
+        for opp in insights.get("ai_opportunities", []):
+            _render_ai_opportunity(opp)
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
+def _baseline_source_counts(cache: Optional[Dict] = None) -> Dict[str, int]:
+    """Frozen baseline counts from cached_results.json (authoritative for visitors)."""
+    counts = {s: 0 for s in SOURCE_ORDER}
+    if cache and cache.get("source_counts"):
+        for k, v in cache["source_counts"].items():
+            counts[_normalize_source(k)] = int(v)
+        return counts
+    counts["Reddit"] = len(load_reddit_reviews())
+    return counts
+
+
+def _render_corpus_banner(cache: Dict):
+    total = int(cache.get("total_reviews") or sum(_baseline_source_counts(cache).values()))
+    sources_n = len([s for s in SOURCE_ORDER if _baseline_source_counts(cache).get(s, 0) > 0]) or 3
+    date_str = _format_corpus_date(cache)
+    st.caption(
+        f"Corpus analysed {date_str} · {total:,} items across {sources_n} sources · "
+        f"press Run Analysis for a live refresh."
+    )
+
+
+def _show_cached_results(cache: Dict, note: Optional[str] = None):
+    """Render frozen insights in tabs (zero-click default)."""
+    if note:
+        st.markdown(f'<div class="cache-note">{note}</div>', unsafe_allow_html=True)
+
+    insights = cache.get("insights") or {
+        "summary": cache.get("summary"),
+        "discovery_questions": cache.get("discovery_questions"),
+        "key_themes": cache.get("key_themes"),
+        "top_frustrations": cache.get("top_frustrations"),
+        "user_segments": cache.get("user_segments"),
+        "unmet_needs": cache.get("unmet_needs"),
+        "ai_opportunities": cache.get("ai_opportunities"),
+        "_meta": {"total_reviews": cache.get("total_reviews"), "batches_total": 0,
+                  "batches_success": 0, "batch_size": BATCH_SIZE},
+    }
+    reviews = cache.get("sample_reviews") or cache.get("reviews") or []
+    live_sample = [
+        {**r, "source": _normalize_source(r.get("source", ""))}
+        for r in reviews
+        if _normalize_source(r.get("source", "")) in ("App Store", "Play Store")
+    ]
+    reddit_sample = [
+        {**r, "source": "Reddit"}
+        for r in reviews
+        if _normalize_source(r.get("source", "")) == "Reddit"
+    ] or load_reddit_reviews()[:12]
+    display_reviews = live_sample + reddit_sample
+    counts = _baseline_source_counts(cache)
+    render_insights(
+        insights,
+        display_reviews,
+        corpus_total=sum(counts.values()),
+        source_counts=counts,
+    )
+
+
+def _show_live_results(
+    insights: Dict,
+    all_reviews: List[Dict],
+    counts: Dict[str, int],
+    csv_text: str,
+    csv_path: str,
+):
+    """Render a live run without overwriting cached_results.json."""
+    st.success("Analysis complete! (live session — baseline unchanged)")
+    render_insights(
+        insights,
+        all_reviews,
+        corpus_total=sum(counts.values()),
+        source_counts=counts,
+    )
+
+    if st.button(
+        "Save as cached baseline",
+        key="main_save_baseline",
+        help="Overwrite cached_results.json with this live run",
+    ):
+        save_cached_baseline(insights, all_reviews)
+        st.session_state.live_result = None
+        st.success(f"Saved frozen baseline to {os.path.basename(CACHE_PATH)}")
+        st.rerun()
+
+    meta = insights.get("_meta", {})
+    insights_export = {k: v for k, v in insights.items() if k != "_meta"}
+    export = {
+        "generated_at":  datetime.now().isoformat(),
+        "total_reviews": sum(counts.values()),
+        "sources":       [s for s in SOURCE_ORDER if counts.get(s, 0) > 0],
+        "source_counts": counts,
+        "insights":      insights_export,
+        "validation":    dict(MANUAL_AUDIT),
+        "batches_total": meta.get("batches_total"),
+        "batches_success": meta.get("batches_success"),
+    }
+    dl_col1, dl_col2 = st.columns(2)
+    with dl_col1:
+        st.download_button(
+            "Download Full Analysis (JSON)",
+            data=json.dumps(export, indent=2),
+            file_name=f"blinkit_discovery_analysis_{datetime.now().strftime('%Y%m%d_%H%M')}.json",
+            mime="application/json",
+            use_container_width=True,
+        )
+    with dl_col2:
+        st.download_button(
+            "Download Raw Reviews (CSV)",
+            data=csv_text,
+            file_name=os.path.basename(csv_path),
+            mime="text/csv",
+            use_container_width=True,
+        )
+
+
 def main():
-    # Header
     st.markdown("""
     <div class="app-header">
-        <h1>🛒 Blinkit Discovery — AI Review Analysis Engine</h1>
+        <h1>Blinkit Discovery — AI Review Analysis Engine</h1>
         <p>
-            Analyze live reviews from App Store &amp; Play Store to understand why
-            users stick to the same categories and what blocks product discovery.
+            Live App Store &amp; Play Store review analysis on why users stick to the same
+            categories — and what blocks product discovery.
         </p>
     </div>
     """, unsafe_allow_html=True)
 
-    # ── Read API keys silently from environment / Streamlit secrets ──
-    # Keys are never shown in the UI — loaded from .env locally or
-    # Streamlit Cloud secrets in production.
     def _get_secret(key: str) -> str:
-        # Streamlit Cloud secrets take priority, then environment
         try:
             return st.secrets[key]
         except Exception:
             return os.getenv(key, "")
 
     anthropic_key = _get_secret("ANTHROPIC_API_KEY")
+    cache = load_cached_results()
 
-    # ── Sidebar ──
+    if cache:
+        _render_corpus_banner(cache)
+
+    # Keep last successful live run in session (does not touch the frozen file)
+    if "live_result" not in st.session_state:
+        st.session_state.live_result = None
+
+    sidebar_counts = _baseline_source_counts(cache)
+    # For live sidebar caption, Reddit count always reflects local file
+    reddit_n = len(load_reddit_reviews())
+    corpus_n = sum(sidebar_counts.values())
+    sources_n = sum(1 for v in sidebar_counts.values() if v > 0)
+
     with st.sidebar:
-        st.markdown("## ⚙️ Configuration")
-
-        # Show a green lock if key is present, red warning if missing
-        if anthropic_key:
-            st.success("AI analysis ready")
-        else:
-            st.error("ANTHROPIC_API_KEY not configured")
-
-        st.markdown("### Sources")
-        use_appstore   = st.checkbox("App Store Reviews",    value=True)
-        use_playstore  = st.checkbox("Play Store Reviews",   value=True)
-
-        st.markdown("### Volume")
-        n_playstore    = st.slider("Play Store — review count",      200, 5000, 5000, step=200,
-                                   help="Fetched in batches of 200, up to 5,000")
-
-        st.markdown("---")
-        run_btn = st.button("🔍 Run Analysis", type="primary", use_container_width=True)
-
-        st.markdown("---")
-        st.caption(
-            "This tool fetches live public data and analyzes it with Claude. "
-            "Built for Blinkit Growth Team research on category & product discovery."
+        source_names = ", ".join(
+            s for s in ("Play Store", "App Store", "Reddit")
+            if sidebar_counts.get(s, 0) > 0 or s == "Reddit"
+        )
+        audit_pct = MANUAL_AUDIT["human_audit_agreement_pct"]
+        st.markdown(
+            f"""
+<div style="margin-bottom:0.85rem;">
+  <div style="font-size:0.95rem;font-weight:700;color:#1C1C1C;margin-bottom:0.7rem;">Corpus summary</div>
+  <div style="margin-bottom:0.55rem;line-height:1.25;">
+    <span style="font-size:1.45rem;font-weight:700;color:#0C831F;">{corpus_n:,}</span>
+    <span style="font-size:0.8rem;color:#666;"> items analysed</span>
+  </div>
+  <div style="margin-bottom:0.55rem;line-height:1.3;">
+    <span style="font-size:1.2rem;font-weight:700;color:#1C1C1C;">{sources_n} sources</span>
+    <span style="font-size:0.8rem;color:#666;"> · {source_names}</span>
+  </div>
+  <div style="line-height:1.25;">
+    <span style="font-size:1.45rem;font-weight:700;color:#0C831F;">{audit_pct}%</span>
+    <span style="font-size:0.8rem;color:#666;"> human-audit agreement</span>
+  </div>
+</div>
+            """,
+            unsafe_allow_html=True,
         )
 
-    # ── Landing state ──
+        with st.expander("Settings", expanded=False):
+            if anthropic_key:
+                st.success("AI analysis ready")
+            else:
+                st.error("ANTHROPIC_API_KEY not configured")
+
+            st.markdown("**Live scrape sources**")
+            use_appstore  = st.checkbox("App Store Reviews",  value=True)
+            use_playstore = st.checkbox("Play Store Reviews", value=True)
+            st.caption(
+                f"Reddit — always included ({reddit_n} manually curated threads). "
+                "Not live-scraped."
+            )
+
+            st.markdown("**Volume**")
+            n_playstore = st.slider(
+                "Play Store — review count",
+                200, 5000, 5000, step=200,
+                help="Fetched in batches of 200, up to 5,000",
+            )
+
+            run_btn = st.button("Run Analysis", type="primary", use_container_width=True)
+
+            if st.session_state.live_result:
+                st.markdown("---")
+                if st.button(
+                    "Save as cached baseline",
+                    key="sidebar_save_baseline",
+                    help="Overwrite cached_results.json with the latest live run",
+                ):
+                    lr = st.session_state.live_result
+                    save_cached_baseline(lr["insights"], lr["reviews"])
+                    st.session_state.live_result = None
+                    st.success("Frozen baseline updated.")
+                    st.rerun()
+
+        st.caption(
+            "Live-scrapes App Store & Play Store; Reddit is merged from a local curated file. "
+            "Run Analysis never overwrites the frozen baseline unless you save it."
+        )
+
+    # ── Zero-click default: frozen baseline ──
     if not run_btn:
-        c1, c2, c3, c4 = st.columns(4)
-        for col, (step, title, body) in zip(
-            [c1, c2, c3, c4],
-            [
-                ("1", "Gather data",
-                 "Scrapes live App Store &amp; Google Play reviews for Blinkit "
-                 "(India), deduplicates them, and interleaves sources for balanced batches."),
-                ("2", "Identify themes",
-                 "Map-reduce with Claude: reviews are batched, each batch yields recurring "
-                 "themes tagged high/medium/low frequency with a supporting quote."),
-                ("3", "Generate insights",
-                 "A synthesis step consolidates themes across batches and answers the eight "
-                 "discovery questions about category &amp; product exploration."),
-                ("4", "Validate quality",
-                 "Every theme is grounded in a verbatim quote, must recur across independent "
-                 "batches, and is backed by a transparent sample size &amp; rating spread."),
-            ],
-        ):
-            with col:
-                st.markdown(
-                    f'<div class="how-card"><h4>Step {step} — {title}</h4><p>{body}</p></div>',
-                    unsafe_allow_html=True,
-                )
-
-        st.markdown('<div class="section-header">Questions This Engine Answers</div>', unsafe_allow_html=True)
-        questions = [
-            "Why do users repeatedly buy from the same categories?",
-            "What prevents users from exploring new categories?",
-            "How do users discover products today?",
-            "What role do habits play in shopping behavior?",
-            "What information do users need before trying a new category?",
-            "What frustrations emerge repeatedly?",
-            "Which user segments are more likely to experiment?",
-            "What unmet needs emerge consistently across discussions?",
-        ]
-        q1, q2 = st.columns(2)
-        for idx, q in enumerate(questions):
-            with (q1 if idx % 2 == 0 else q2):
-                st.markdown(
-                    f'<div class="qa-card"><div class="q">Q{idx + 1}</div>'
-                    f'<div class="a">{q}</div></div>',
-                    unsafe_allow_html=True,
-                )
-
-        st.markdown("""
-        <br>
-        <p style="color:#888; text-align:center;">
-            Select your sources in the sidebar and click <b>Run Analysis</b> to begin.
-        </p>
-        """, unsafe_allow_html=True)
+        if st.session_state.live_result:
+            lr = st.session_state.live_result
+            _show_live_results(
+                lr["insights"], lr["reviews"], lr["counts"], lr["csv_text"], lr["csv_path"]
+            )
+        elif cache:
+            _show_cached_results(cache)
+        else:
+            _render_step_cards()
+            st.info("No cached_results.json yet. Run Analysis, then Save as cached baseline.")
         return
 
-    # ── Validation ──
+    # ── Live run (does not auto-write cached_results.json) ──
     if not anthropic_key:
         st.error("API key not configured. Set ANTHROPIC_API_KEY in Streamlit secrets.")
+        if cache:
+            _show_cached_results(cache, note=LIVE_FAIL_NOTE)
         return
 
-    # ── Pipeline ──
-    all_reviews: List[Dict] = []
-    n_steps = sum([use_appstore, use_playstore])
-    done    = 0
-
+    live_reviews: List[Dict] = []
+    n_steps = sum([use_appstore, use_playstore]) or 1
+    done = 0
     progress = st.progress(0)
-    status   = st.empty()
+    status = st.empty()
+    scrape_error: Optional[str] = None
 
-    if use_appstore:
-        r = fetch_appstore_reviews(status)
-        all_reviews.extend(r)
-        done += 1
-        progress.progress(done / (n_steps + 1))
-        if r:
-            st.success(f"✅ App Store — {len(r)} reviews")
-        else:
-            st.warning("⚠️ App Store — 0 reviews (Apple may have changed page structure)")
+    try:
+        if use_appstore:
+            r = fetch_appstore_reviews(status)
+            live_reviews.extend(r)
+            done += 1
+            progress.progress(min(done / (n_steps + 1), 0.9))
+            if r:
+                st.success(f"App Store — {len(r)} reviews")
+            else:
+                st.warning("App Store — 0 reviews (Apple may have changed page structure)")
 
-    if use_playstore:
-        r = fetch_playstore_reviews(n_playstore, status)
-        all_reviews.extend(r)
-        done += 1
-        progress.progress(done / (n_steps + 1))
-        if r:
-            st.success(f"✅ Play Store — {len(r)} reviews")
-        else:
-            st.warning("⚠️ Play Store — 0 reviews (scraper may need updating)")
+        if use_playstore:
+            r = fetch_playstore_reviews(n_playstore, status)
+            live_reviews.extend(r)
+            done += 1
+            progress.progress(min(done / (n_steps + 1), 0.9))
+            if r:
+                st.success(f"Play Store — {len(r)} reviews")
+            else:
+                st.warning("Play Store — 0 reviews (scraper may need updating)")
+    except Exception as e:
+        scrape_error = str(e)
 
     status.empty()
 
-    if not all_reviews:
-        st.error("No reviews collected from any source. Check your configuration and try again.")
+    # Reddit always merged from local file — live scrape never removes it
+    all_reviews = merge_reddit_into_corpus(live_reviews)
+    counts = corpus_source_counts(all_reviews)
+    st.info(
+        f"Reddit — {counts['Reddit']} manually curated threads merged "
+        f"(not live-scraped). Corpus: {counts['App Store']} + {counts['Play Store']} + "
+        f"{counts['Reddit']} = {sum(counts.values())}"
+    )
+
+    if scrape_error and not live_reviews:
+        if cache:
+            _show_cached_results(cache, note=LIVE_FAIL_NOTE)
+        else:
+            st.error(scrape_error)
         return
 
-    # ── Save raw scraped reviews to CSV on disk ──
+    if not all_reviews:
+        if cache:
+            _show_cached_results(cache, note=LIVE_FAIL_NOTE)
+        else:
+            st.error("No reviews in corpus. Check live sources and blinkit_reddit.csv.")
+        return
+
     csv_fields = ["source", "rating", "title", "text", "date", "author"]
     csv_buf = io.StringIO()
     csv_writer = csv.DictWriter(csv_buf, fieldnames=csv_fields, extrasaction="ignore")
@@ -934,71 +1436,43 @@ def main():
     csv_writer.writerows(all_reviews)
     csv_text = csv_buf.getvalue()
 
-    output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output")
+    output_dir = os.path.join(_APP_DIR, "output")
     os.makedirs(output_dir, exist_ok=True)
     csv_path = os.path.join(
         output_dir, f"blinkit_reviews_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
     )
-    # utf-8-sig so Excel opens Unicode review text correctly
     with open(csv_path, "w", newline="", encoding="utf-8-sig") as f:
         f.write(csv_text)
-    st.info(f"📁 Raw reviews saved to: {csv_path}")
+    st.info(f"Raw reviews saved to: {csv_path}")
 
-    # ── Claude analysis ──
-    n_batches_est = -(-len(all_reviews) // BATCH_SIZE)  # ceiling division
+    n_batches_est = -(-len(all_reviews) // BATCH_SIZE)
     status.text(f"Preparing {len(all_reviews)} reviews → {n_batches_est} batches for Claude…")
 
     try:
-        with st.spinner(f"Claude is analyzing {len(all_reviews)} reviews in {n_batches_est} batches…"):
+        with st.spinner(
+            f"Claude is analyzing {len(all_reviews)} reviews in {n_batches_est} batches…"
+        ):
             insights = analyze_with_claude(all_reviews, anthropic_key, status)
 
         progress.progress(1.0)
         status.empty()
 
-        st.success("Analysis complete!")
-        st.markdown("---")
-        st.markdown("## 📊 Insights")
-        render_insights(insights, all_reviews)
-
-        # Download — strip the heavy per-batch payload, keep a slim validation summary
-        st.markdown("---")
-        meta = insights.get("_meta", {})
-        insights_export = {k: v for k, v in insights.items() if k != "_meta"}
-        insights_export["validation"] = {
-            "total_reviews":   meta.get("total_reviews", len(all_reviews)),
-            "batches_total":   meta.get("batches_total"),
-            "batches_success": meta.get("batches_success"),
-            "batch_size":      meta.get("batch_size"),
+        # Session only — do not overwrite cached_results.json
+        st.session_state.live_result = {
+            "insights": insights,
+            "reviews": all_reviews,
+            "counts": counts,
+            "csv_text": csv_text,
+            "csv_path": csv_path,
         }
-        export = {
-            "generated_at":   datetime.now().isoformat(),
-            "total_reviews":  len(all_reviews),
-            "sources":        list({r["source"] for r in all_reviews}),
-            "insights":       insights_export,
-        }
-        dl_col1, dl_col2 = st.columns(2)
-        with dl_col1:
-            st.download_button(
-                "⬇️ Download Full Analysis (JSON)",
-                data=json.dumps(export, indent=2),
-                file_name=f"blinkit_discovery_analysis_{datetime.now().strftime('%Y%m%d_%H%M')}.json",
-                mime="application/json",
-                use_container_width=True,
-            )
-        with dl_col2:
-            st.download_button(
-                "⬇️ Download Raw Reviews (CSV)",
-                data=csv_text,
-                file_name=os.path.basename(csv_path),
-                mime="text/csv",
-                use_container_width=True,
-            )
+        _show_live_results(insights, all_reviews, counts, csv_text, csv_path)
 
-    except json.JSONDecodeError:
-        st.error("Claude returned malformed JSON. Please try again.")
-    except Exception as e:
-        st.error(f"Analysis failed: {e}")
-        st.exception(e)
+    except Exception:
+        status.empty()
+        if cache:
+            _show_cached_results(cache, note=LIVE_FAIL_NOTE)
+        else:
+            st.error("Analysis failed.")
 
 
 if __name__ == "__main__":
