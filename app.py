@@ -901,24 +901,44 @@ def _render_step_cards():
             )
 
 
-def _render_methodology(insights: Dict, all_reviews: List[Dict]):
-    """Compact methodology detail cards (no charts)."""
-    meta = insights.get("_meta", {})
+def _methodology_corpus_stats() -> Dict:
+    """Always use frozen cached_results.json — never partial live/sample counts."""
+    cache = load_cached_results() or {}
+    counts = {s: 0 for s in SOURCE_ORDER}
+    for k, v in (cache.get("source_counts") or {}).items():
+        counts[_normalize_source(k)] = int(v)
+    total = int(cache.get("total_reviews") or sum(counts.values()))
+    meta = ((cache.get("insights") or {}).get("_meta") or {})
+    return {
+        "total": total,
+        "counts": counts,
+        "batches_total": int(meta.get("batches_total") or 0),
+        "batches_success": int(meta.get("batches_success") or 0),
+        "batch_size": int(meta.get("batch_size") or BATCH_SIZE),
+    }
+
+
+def _render_methodology(insights: Dict, all_reviews: List[Dict] = None):
+    """Compact methodology detail cards — corpus numbers from cached_results.json only."""
+    stats = _methodology_corpus_stats()
+    counts = stats["counts"]
+    total = stats["total"]
+    batches_total = stats["batches_total"]
+    batches_success = stats["batches_success"]
+    batch_size = stats["batch_size"]
+
     themes = insights.get("key_themes", [])
     grounded = sum(1 for t in themes if (t.get("quote") or "").strip())
     grounding_pct = round(100 * grounded / len(themes)) if themes else 0
-    batches_total   = meta.get("batches_total", 0)
-    batches_success = meta.get("batches_success", 0)
-    batch_size      = meta.get("batch_size", BATCH_SIZE)
-    counts = corpus_source_counts(all_reviews) if all_reviews else {}
 
     st.markdown('<div class="section-header">Methodology detail</div>', unsafe_allow_html=True)
     m1, m2 = st.columns(2)
     with m1:
         st.markdown(
             f'<div class="method-card"><h4>1 · Gather data</h4><p>'
-            f'{sum(counts.values()) or "N"} reviews: App Store &amp; Play Store (live scrape) plus '
-            f'Reddit (manually curated threads), deduped and interleaved by source.</p></div>',
+            f'{total:,} reviews — {counts.get("Play Store", 0):,} Play Store, '
+            f'{counts.get("App Store", 0):,} App Store, {counts.get("Reddit", 0):,} Reddit '
+            f'(manually curated threads) — deduped and interleaved by source.</p></div>',
             unsafe_allow_html=True,
         )
         st.markdown(

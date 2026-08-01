@@ -1167,8 +1167,8 @@
     ],
     "_meta": {
       "total_reviews": 3025,
-      "batches_total": 28,
-      "batches_success": 18,
+      "batches_total": 31,
+      "batches_success": 31,
       "batch_size": 100
     }
   }
